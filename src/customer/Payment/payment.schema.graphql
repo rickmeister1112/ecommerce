@@ -1,0 +1,330 @@
+type UserWallet {
+  id: UUID
+  created_at: DateTime
+  updated_at: DateTime
+  user_id: UUID
+  user: User
+  cashWallet: Int
+  rewardWallet: Int
+  joiningBonus: Int
+  promotionalBonus: Int
+}
+
+input UserWalletInput {
+  id: UUID
+  created_at: DateTime
+  updated_at: DateTime
+  user_id: UUID
+  user: UserInput
+}
+
+extend type Query {
+  getVyapWallet(id: UUID!): UserWallet!
+}
+
+type OrderTransactionHistory {
+  id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  created_at(
+    greaterThan: DateTime
+    lesserThan: DateTime
+    greaterEqual: DateTime
+    lesserEqual: DateTime
+    isNull: Boolean
+  ): DateTime
+  updated_at(
+    greaterThan: DateTime
+    lesserThan: DateTime
+    greaterEqual: DateTime
+    lesserEqual: DateTime
+    isNull: Boolean
+  ): DateTime
+  payment_mode(
+    equal: String
+    notEqual: String
+    in: [String]
+    notIn: [String]
+    contains: String
+    startsWith: String
+    isNull: Boolean
+  ): String
+  transaction_message(
+    equal: String
+    notEqual: String
+    in: [String]
+    notIn: [String]
+    contains: String
+    startsWith: String
+    isNull: Boolean
+  ): String
+  user_id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  order_id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  amount(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  transactionType(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  user: User
+  order: Order
+}
+
+input OrderTransactionHistoryInput {
+  id: UUID
+  created_at: DateTime
+  updated_at: DateTime
+  payment_mode: String
+  transaction_message: String
+  amount: Int
+  user_id: UUID
+  order_id: UUID
+  transactionType: Int
+  user: UserInput
+  order: OrderInput
+}
+
+extend type Query {
+  getOrderTransactionHistory(id: UUID!): OrderTransactionHistory!
+  listOrderTransactionHistory(
+    page: Int
+    limit: Int
+    order_by: [String]
+  ): [OrderTransactionHistory]!
+}
+extend type Mutation {
+  addOrderTransactionHistory(
+    row: PaymentTransactionHistoryInput!
+  ): PaymentTransactionHistory
+  addMultipleOrderTransactionHistory(
+    rows: [OrderTransactionHistoryInput!]
+  ): [OrderTransactionHistory]!
+  updateOrderTransactionHistory(
+    id: UUID!
+    input: OrderTransactionHistoryInput!
+  ): OrderTransactionHistory!
+  deleteOrderTransactionHistory(id: UUID!): OrderTransactionHistory!
+}
+
+type PaymentTransactionHistory {
+  id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  created_at(
+    greaterThan: DateTime
+    lesserThan: DateTime
+    greaterEqual: DateTime
+    lesserEqual: DateTime
+    isNull: Boolean
+  ): DateTime
+  updated_at(
+    greaterThan: DateTime
+    lesserThan: DateTime
+    greaterEqual: DateTime
+    lesserEqual: DateTime
+    isNull: Boolean
+  ): DateTime
+  transaction_id(
+    equal: String
+    notEqual: String
+    in: [String]
+    notIn: [String]
+    contains: String
+    startsWith: String
+    isNull: Boolean
+  ): String
+  transaction_message(
+    equal: String
+    notEqual: String
+    in: [String]
+    notIn: [String]
+    contains: String
+    startsWith: String
+    isNull: Boolean
+  ): String
+  user_id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  order_transaction_history_id(
+    equal: UUID
+    notEqual: UUID
+    in: [UUID]
+    notIn: [UUID]
+    isNull: Boolean
+  ): UUID
+  transactionNumber(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  transactionNumberReason(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  amount(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  transactionType(
+    equal: Int
+    notEqual: Int
+    in: [Int]
+    notIn: [Int]
+    greaterThan: Int
+    lesserThan: Int
+    greaterEqual: Int
+    lesserEqual: Int
+    isNull: Boolean
+  ): Int
+  user: User
+  orderTransactionHistory: OrderTransactionHistory
+}
+
+input PaymentTransactionHistoryInput {
+  id: UUID
+  created_at: DateTime
+  updated_at: DateTime
+  transaction_id: String
+  transaction_message: String
+  transactionNumber: Int
+  transactionNumberReason: Int
+  transactionType: Int
+  user_id: UUID
+  amount: Int
+  order_transaction_history_id: UUID
+  user: UserInput
+  orderTransactionHistory: OrderTransactionHistoryInput
+}
+
+input generateLinkInput {
+  orderId: UUID
+  amount: Int
+}
+
+extend type Query {
+  getPaymentTransactionHistory(id: UUID!): PaymentTransactionHistory!
+  listPaymentTransactionHistory(
+    page: Int
+    limit: Int
+    order_by: [String]
+  ): [PaymentTransactionHistory]!
+  generatePaymentLink(input: generateLinkInput): JSON
+}
+extend type Mutation {
+  addPaymentTransactionHistory(
+    row: PaymentTransactionHistoryInput!
+  ): PaymentTransactionHistory!
+  addMultiplePaymentTransactionHistory(
+    rows: [PaymentTransactionHistoryInput!]
+  ): [PaymentTransactionHistory]!
+  updatePaymentTransactionHistory(
+    id: UUID!
+    input: PaymentTransactionHistoryInput!
+  ): PaymentTransactionHistory!
+  deletePaymentTransactionHistory(id: UUID!): PaymentTransactionHistory!
+}
+
+type PostpaidBalanceData {
+  value: Int
+  activation_url: String
+  application_status: String
+}
+
+type PostpaidDues {
+  total_amount: JSON
+  date: String
+}
+
+type PostpaidLimit {
+  value: Int!
+  formatted_value: String!
+}
+
+type PostpaidBalance {
+  formatted_value: String!
+}
+
+type PostpaidBalanceResponse {
+  msg: String!
+  data: PostpaidBalanceData
+  soa_url: String
+  dues: PostpaidDues
+  limit: PostpaidLimit
+  balance: PostpaidBalance
+}
+
+input PostpaidPayment {
+  amount: Int!
+  orderId: String!
+  address: AddressInput!
+  redirectUrl: String!
+}
+
+extend type Query {
+  getPostpaidBalance: PostpaidBalanceResponse!
+  getPostpaidStatement: PostpaidBalanceResponse!
+}
+
+extend type Mutation {
+  newPostpaidPayment(input: PostpaidPayment): JSON!
+}

@@ -1,0 +1,46 @@
+
+type Cart {
+    id: UUID
+    created_at: DateTime
+    updated_at: DateTime
+    total: Float
+    subtotal: Float
+    discount: Float
+    vat: Float
+    cgst: Float
+    sgst: Float
+    shipping_cost: Float
+    handling_cost: Float
+    customer_id: UUID
+    outlet_id: UUID
+    address_id: UUID
+    items: [CartInlineItem]
+}
+
+input CartInput {
+    id: UUID
+    created_at: DateTime
+    updated_at: DateTime
+    total: Float
+    subtotal: Float
+    discount: Float
+    vat: Float
+    cgst: Float
+    sgst: Float
+    shipping_cost: Float
+    handling_cost: Float
+    customer_id: UUID
+    outlet_id: UUID
+    address_id: UUID
+    items: [CartInlineItemInput]
+}
+
+      extend type Query {
+        getCart(id: UUID!): Cart!
+        getCartByUser(customerId: UUID!, outletId: UUID!): Cart!
+      }
+      extend type Mutation {
+        addCart(row: CartInput!): Cart!
+        deleteCart(id: UUID!, productWarehouseId: String): Boolean!
+        deleteItemCart(id: UUID!): Boolean!
+      }

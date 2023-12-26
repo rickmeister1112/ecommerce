@@ -1,0 +1,48 @@
+scalar DateTime
+scalar Date
+scalar JSON
+scalar UUID
+scalar text
+
+type LoginUser {
+    id: UUID!
+    created_at: DateTime!
+    updated_at: DateTime!
+    password_hash: String!
+    email: String!
+    first_name: String!
+    last_name: String!
+    mobile: String
+}
+
+type LoginResponse {
+    access_token: String!
+    user: LoginUser!
+}
+
+type S3SignatureResponse  {
+    method: String
+    url: String
+    fields: JSON
+    headers: JSON
+}
+
+type Query {
+    login(username: String!, password: String!): LoginResponse!
+    s3Signature(extension: String, content_type: String): S3SignatureResponse!
+    otplogin(mobile: String!):JSON
+    verifyOtp(mobile: String!, otp: Int!):JSON
+    checkNumberValidity(mobile: String!): JSON
+}
+
+input Signup {
+    password_hash: String!
+    email: String!
+    first_name: String!
+    last_name: String!
+    mobile: String
+}
+
+type Mutation {
+    signup(row: Signup): LoginResponse!
+}

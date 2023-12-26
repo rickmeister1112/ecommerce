@@ -1,0 +1,23 @@
+scalar DateTime
+scalar UUID
+
+input CuisineInput {
+  name: String!
+  image: String!
+}
+
+type Cuisine {
+  id: UUID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  image: String!
+}
+
+extend type Mutation {
+addIntegratedOutlet(row: OutletInput!): Outlet!
+}
+
+extend type Mutation {
+  addInegratedAddress(row: AddressInput!): Address!
+}

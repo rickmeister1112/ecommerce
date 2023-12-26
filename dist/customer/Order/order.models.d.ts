@@ -1,0 +1,115 @@
+import { BaseModel } from '../utils/base.model';
+import { Address, User } from 'src/customer/Customer/customer.models';
+import { Warehouse, WarehouseProduct } from '../../admin/Product/product.models';
+export declare class Order extends BaseModel {
+    user: User;
+    user_id: string;
+    orderItems: Item[];
+    order_status_user: string;
+    total_amount: number;
+    payment_mode: string;
+    source: string;
+    referrer: string;
+    delivery_instructions: string;
+    special_instructions: string;
+    discount_comment: string;
+    is_settled: boolean;
+    is_cancelled: boolean;
+    meta_data: any;
+    calc_total_tax: number;
+    calc_service_charge: number;
+    calc_service_charge_tax: number;
+    calc_delivery_charge_tax: number;
+    calc_packaging_charge_tax: number;
+    calc_total_item_discount: number;
+    calc_total_tcs: number;
+    complimentary: number;
+    tip: number;
+    cash_denomination: any;
+    address: Address;
+    address_id: string;
+    statusTimeline: OrderTimeline[];
+    is_zoho_created: number;
+    attempts_to_create_on_zoho: number;
+    zoho_contact_id: string;
+    packages: Package[];
+    invoices: Invoice[];
+    warehouse: Warehouse;
+    warehouse_id: string;
+    zoho_status: string;
+    zoho_salesorder_id: string;
+    zoho_salesorder_number: string;
+    paid_status: string;
+    order_status: string;
+    invoiced_status: string;
+    shipped_status: string;
+    status: string;
+    shipment_date: string;
+}
+export declare class OrderTimeline extends BaseModel {
+    status: string;
+    order: Order;
+}
+export declare class Item extends BaseModel {
+    productWarehouse: WarehouseProduct;
+    product_warehouse_id: string;
+    order: Order;
+    order_id: string;
+    product_warehouse_name: string;
+    product_warehouse_description: string;
+    warehouse_id: string;
+    unit: string;
+    final_price: number;
+    total_price: number;
+    item_level_discount: number;
+    quantity: number;
+    is_complimentary: boolean;
+    complimentary_message: string;
+    is_discount_exempted: boolean;
+    is_tax_inclusive: boolean;
+    group_name: string;
+    cancellation_message: string;
+    combo_id: number;
+    image_link: string;
+    calc_total_agg_tax: number;
+    calc_total_agg_tax_percent: number;
+    calc_item_tax: number;
+    calc_item_tax_percent: number;
+    calc_add_on_total: number;
+    calc_item_discount_percentage: number;
+    item_id_zoho: string;
+    quantity_delivered: string;
+    quantity_backordered: string;
+    quantity_invoiced: string;
+    quantity_packed: string;
+    item_sub_total: string;
+    quantity_shipped: string;
+    quantity_returned: string;
+}
+export declare class Package extends BaseModel {
+    package_id: string;
+    package_number: string;
+    status: string;
+    shipment_status: string;
+    quantity: number;
+    carrier: string;
+    tracking_number: string;
+    shipment_id: string;
+    shipment_number: string;
+    shipment_date: string;
+    delivery_method: string;
+    delivery_guarantee: boolean;
+    service: string;
+    order: Order;
+    order_id: string;
+}
+export declare class Invoice extends BaseModel {
+    status: string;
+    invoice_number: string;
+    invoice_id: string;
+    type: string;
+    order: Order;
+    order_id: string;
+    total_amount: number;
+    salesorder_id: string;
+}

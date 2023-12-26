@@ -1,0 +1,15 @@
+
+type Mutation {
+  getProductPricing(productWarehouseIds: [UUID!], userId: UUID!): [BasePricing]!
+}
+# input ProductPricingInput {
+#   userId: UUID!
+#   productWarehouseIds: [UUID!]!
+# }
+
+
+
+input ProductPricingInput {
+  userId: ID!
+  productWarehouseId: ID!
+}

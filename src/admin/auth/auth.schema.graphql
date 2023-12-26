@@ -1,0 +1,10 @@
+scalar DateTime
+scalar Date
+scalar JSON
+scalar UUID
+scalar text
+
+type Query {
+    loginadmin(username: String!, password: String!): LoginResponse!
+    s3Signatureadmin(extension: String, content_type: String): S3SignatureResponse!
+}

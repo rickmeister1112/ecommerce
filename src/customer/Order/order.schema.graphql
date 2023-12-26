@@ -1,0 +1,16 @@
+extend type Mutation {
+    createSalesOrder(user_id: UUID!, address_id: UUID!, warehouse_id: UUID!): CreateOrderResponse!
+}
+
+type CreateOrderResponse {
+    status: String!
+    message: String!
+}
+type Query {
+    orderStatus(orderId: UUID!): OrderStatusResponse!
+}
+
+type OrderStatusResponse {
+    status: String!
+    order: Order
+}

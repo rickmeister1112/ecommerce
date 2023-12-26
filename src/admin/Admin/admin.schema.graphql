@@ -1,0 +1,85 @@
+type UserAdmin {
+  id (equal: UUID, notEqual: UUID, in: [UUID], notIn: [UUID], isNull: Boolean): UUID!
+  created_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime!
+  updated_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime!
+  email (equal: String, notEqual: String, in: [String], notIn: [String], contains: String, startsWith: String, isNull: Boolean): String!
+  first_name (equal: String, notEqual: String, in: [String], notIn: [String], contains: String, startsWith: String, isNull: Boolean): String!
+  last_name (equal: String, notEqual: String, in: [String], notIn: [String], contains: String, startsWith: String, isNull: Boolean): String!
+  is_admin (equal: Int, notEqual: Int, in: [Int], notIn: [Int], isNull: Boolean): Int!
+  is_active (equal: Int, notEqual: Int, in: [Int], notIn: [Int], isNull: Boolean): Int!
+  mobile (equal: String, notEqual: String, in: [String], notIn: [String], contains: String, startsWith: String, isNull: Boolean): String!
+  password_hash: String!
+}
+
+input UserAdminInput {
+  password_hash: String!
+  email : String!
+  first_name : String!
+  last_name : String!
+  is_admin : Int!
+  is_active : Int!
+  mobile : String!
+
+}
+
+extend type Query {
+  getUserAdmin(id: UUID!): UserAdmin!
+  listUserAdmin(page: Int, limit: Int, order_by: [String]): [UserAdmin]!
+}
+
+extend type Mutation {
+  addUserAdmin(row: UserAdminInput!): UserAdmin!
+  addMultipleUserAdmin(rows: [UserAdminInput!]): [UserAdmin]!
+  updateUserAdmin(id: UUID!, input: UserAdminInput!): UserAdmin!
+  deleteUserAdmin(id: UUID!): UserAdmin!
+}
+
+type Role {
+  id (equal: UUID, notEqual: UUID, in: [UUID], notIn: [UUID], isNull: Boolean): UUID
+  created_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime
+  updated_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime
+  role_name (equal: String, notEqual: String, in: [String], notIn: [String], contains: String, startsWith: String, isNull: Boolean): String
+}
+
+input RoleInput {
+  role_name : String
+}
+
+extend type Query {
+  getRole(id: UUID!): Role!
+  listRole(page: Int, limit: Int, order_by: [String]): [Role]!
+}
+
+extend type Mutation {
+  addRole(row: RoleInput!): Role!
+  addMultipleRole(rows: [RoleInput!]): [Role]!
+  updateRole(id: UUID!, input: RoleInput!): Role!
+  deleteRole(id: UUID!): Role!
+}
+
+type UserRole {
+  id (equal: UUID, notEqual: UUID, in: [UUID], notIn: [UUID], isNull: Boolean): UUID
+  created_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime
+  updated_at (greaterThan: DateTime, lesserThan: DateTime, greaterEqual: DateTime, lesserEqual: DateTime, isNull: Boolean): DateTime
+  user_id (equal: UUID, notEqual: UUID, in: [UUID], notIn: [UUID], isNull: Boolean): UUID
+  role_id (equal: UUID, notEqual: UUID, in: [UUID], notIn: [UUID], isNull: Boolean): UUID
+  user: UserAdmin
+  role: Role
+}
+
+input UserRoleInput {
+  user_id : UUID
+  role_id : [UUID]
+}
+
+
+extend type Query {
+  getUserRole(id: UUID!): UserRole!
+  listUserRole(page: Int, limit: Int, order_by: [String]): [UserRole]!
+}
+
+extend type Mutation {
+  addUserRole(row: UserRoleInput!): UserRole!
+  addMultipleUserRole(rows: [UserRoleInput!]): [UserRole]!
+  deleteUserRole(id: UUID!): UserRole!
+}

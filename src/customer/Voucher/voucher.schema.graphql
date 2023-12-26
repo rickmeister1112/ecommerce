@@ -1,0 +1,6 @@
+type Mutation {
+  fetchCoupon(userId: String!, warehouseId: String!): [Coupon]
+}
+type Mutation {
+  redeemCoupon(couponId: String!, userId: String!): Coupon
+}
