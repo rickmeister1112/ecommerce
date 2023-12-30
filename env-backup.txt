@@ -1,16 +1,1 @@
-DATABASE_URL="postgresql://postgres:postgres@127.0.0.1:5432/vyap?schema=public"
-JWT_SECRET="COMPLEX SECRET AND KEEP IT SAFE OUTSIDE OF THE SOURCE CODE"
-AWS_ACCESS_KEY_ID="AKIAISVNSOQSI5PZH2JA"
-AWS_SECRET_ACCESS_KEY="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"
-AWS_S3_BUCKET="posify-images"
-SEND_GRID_KEY=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
-TEST_ENV_VAR="env loading passed"
-rupify_api_key = "sak_test_dlBuWs5Wx4US4L75Rok98v2WNo0uAzg3"
-rupify_api_url = "https://pay-api-sandbox.rupifi.com"
-#rupify_api_key = "sak_live_PDeTh0vf0vTIWAIsPsr9yKdLvLLRB31a"
-#rupify_api_url = "https://pay-api.rupifi.com"
-cashfree_client_id = "19693554cad39819369a2cab21539691"
-cashfree_client_secret = "3544c8498ee5be5704a3558da3665e3a1c44bb86"
-zoho_client_id = "1000.8IXJSYS7L84S46TSG5PJ1DDI9R1TFM"
-zoho_client_secret = "e28f384cb50c2bd438b4bb6bc728adfad373b34f3d"
-zoho_refreshtoken = "1000.8682c4e459128178e5feeaa4e59c90a0.921608ad829eadd2b6b4aa553b00f801"
+
