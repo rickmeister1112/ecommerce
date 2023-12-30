@@ -1,6 +1,0 @@
-export = deauthCallback;
-declare function deauthCallback({ body, companion, headers }: {
-    body: any;
-    companion: any;
-    headers: any;
-}, res: any, next: any): Promise<void>;

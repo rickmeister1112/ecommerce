@@ -1,7 +1,0 @@
-export = thumbnail;
-/**
- *
- * @param {object} req
- * @param {object} res
- */
-declare function thumbnail(req: object, res: object, next: any): Promise<void>;

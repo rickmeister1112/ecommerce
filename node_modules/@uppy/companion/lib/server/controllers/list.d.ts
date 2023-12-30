@@ -1,6 +1,0 @@
-export = list;
-declare function list({ query, params, companion }: {
-    query: any;
-    params: any;
-    companion: any;
-}, res: any, next: any): Promise<void>;

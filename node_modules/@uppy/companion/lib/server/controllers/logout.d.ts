@@ -1,7 +1,0 @@
-export = logout;
-/**
- *
- * @param {object} req
- * @param {object} res
- */
-declare function logout(req: object, res: object, next: any): Promise<void>;
